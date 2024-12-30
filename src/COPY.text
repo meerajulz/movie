@@ -1,0 +1,93 @@
+// import React, { useEffect, useState } from 'react';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import MovieList from './components/movie-list/movie-list';
+// import Search from './components/search/search';
+// import TitleMovies from './components/TitleMovies/title-movies';
+// import AddFavorites from './components/add-favorites/add-favorites';
+
+// function App() {
+//   const [movies, setMovies] = useState([]);
+//   const [searchValue, setSearchValue] = useState('');
+//   const [favorites, setFavorites] = useState<any>([]);
+
+//   const getMovies = async (searchValue: any) => {
+//     const url = `https://www.omdbapi.com/?s=${searchValue}&apikey=4a3b711b`;
+  
+//     const response = await fetch(url);
+//     const responseJson = await response.json();
+  
+//     if (responseJson.Search) {
+//       setMovies(responseJson.Search);
+//     }
+//     //error handling
+//     if (responseJson.Error) {
+//       setMovies([]);
+//       console.log(responseJson.Error);
+//     }
+
+//   }
+
+//   useEffect(() => {
+
+//     //show the favorites movies  in local storage
+//     const storedFavorites = localStorage.getItem('react-movie-app-favorites');
+//     if (storedFavorites) {
+//       setFavorites(JSON.parse(storedFavorites));
+//     }
+
+//     getMovies(searchValue);
+    
+//   }, [searchValue]);
+
+//   const saveToLocalStorage = (items: any) => {
+//     localStorage.setItem('react-movie-app-favorites', JSON.stringify(items));
+//   }
+
+//   const handleSearch = async (searchValue: string) => { 
+//     setSearchValue(searchValue);
+//    // console.log(searchValue);
+//   };
+
+//   const AddFavoritesMovie = (movie: any) => {
+//     const newFavoritesList = [...favorites, movie];
+//     setFavorites(newFavoritesList);
+//     saveToLocalStorage(newFavoritesList);
+//     console.log('AddFavorites', favorites);
+//   }
+
+//   const RemoveFavorite = (movie: any) => {
+//     const newFavoritesList = favorites.filter(
+//       (favorite: any) => favorite.imdbID !== movie.imdbID
+//     );
+//     setFavorites(newFavoritesList);
+//     saveToLocalStorage(newFavoritesList);
+//   }
+
+//   return (
+//     <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px' }}>
+//       <div className='row d-flex align-items-center mt-4 mb-4'>
+//         <TitleMovies heading='Movies' />
+//         <Search value={searchValue} setSearchValue={handleSearch} />
+//       </div> 
+//       <div className='row'>
+//        <MovieList movies={movies}
+//         handleFavoritesClick={AddFavoritesMovie}
+//         favoriteComponent={AddFavorites} buttonText={'Add to favorites'}       />  
+//       </div>   
+
+//       <div className='row d-flex align-items-center mt-4 mb-4'>
+//         <TitleMovies heading='Favorites List' />
+//       </div>  
+//       <div className='row'>
+//       <MovieList movies={favorites} 
+//         buttonText={'Remove to favorites'} 
+//         handleFavoritesClick={RemoveFavorite}
+//         favoriteComponent={AddFavorites}
+//        />  
+//       </div>   
+     
+//     </div>
+//   );
+// }
+
+// export default App;
